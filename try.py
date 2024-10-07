@@ -1,25 +1,23 @@
-def valid(s):
-    open_brackets = []
-    for char in s:
-        if char == '(' or char == '[' or char == '{':
-            open_brackets.append(char)
-        elif char == ')' or char == ']' or char == '}':
-            if len(open_brackets) > 0:
-                stack_top = open_brackets.pop()
-            else:
-                return False
-            if stack_top == '(' and char != ')':
-                return False
-            elif stack_top == '[' and char != ']':
-                return False
-            elif stack_top == '{' and char != '}':
-                return False
+
+def merge(nums1, m, nums2, n): 
+    i = m - 1
+    j = n - 1
+    k = m + n - 1
+
+    print(i,j,k)
+    while (j >= 0): 
+        if (i >= 0 and nums1[i] > nums2[j]):
+            nums1[k] = nums1[i]
+            k-=1
+            i-=1
+        else: 
+            nums1[k] = nums2[j]
+            k-=1
+            j-=1
     
-    if len(open_brackets) > 0:
-        return False
-    else:
-        return True
-                
-s = ']'
-result=valid(s)
-print(result)
+    print(nums1)
+
+nums1 = [1,2,3,0,0,0]
+nums2 = [2,5,6]
+
+merge(nums1,3,nums2,3)
