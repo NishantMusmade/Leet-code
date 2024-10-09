@@ -1,0 +1,24 @@
+# Given an array nums of size n, return the majority element.
+
+# The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+def majorityElement(nums):     
+    max_count = 0
+    majority_element = nums[0]
+    element = {nums[0]:1}
+    for i in range(1,len(nums)):
+        if nums[i] not in element:
+            element[nums[i]] = 1
+        else:
+            element[nums[i]]+=1
+        if max_count<element[nums[i]]:
+            max_count = element[nums[i]]
+            if max_count > len(nums)//2:
+                return nums[i]
+
+            majority_element = nums[i]
+    
+    return majority_element
+
+nums = [2,2,1,1,1,2,2]
+print(majorityElement(nums))
